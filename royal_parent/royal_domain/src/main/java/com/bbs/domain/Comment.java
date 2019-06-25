@@ -9,10 +9,27 @@ import java.util.Date;
 public class Comment {
     private Integer commentId;//评论编号
     private String commentContent;//评论内容
-    private Date commentTime;//评论内容
-    private String commentUserName;//评论内容
-    private Integer commentStatus;//评论内容
-    private Integer articleId;//评论内容
+    private Date commentTime;//评论时间
+    private String commentUserName;//评论人
+    private Integer commentStatus;//评论状态 1，屏蔽 0，解除
+    private String commentStatusStr;
+    private Integer articleId;//帖子编号
+
+    public String getCommentStatusStr() {
+        if (commentStatus !=null){
+            if (commentStatus ==1){
+                commentStatusStr="屏蔽";
+            }
+            if (commentStatus ==0){
+                commentStatusStr="解除";
+            }
+        }
+        return commentStatusStr;
+    }
+
+    public void setCommentStatusStr(String commentStatusStr) {
+        this.commentStatusStr = commentStatusStr;
+    }
 
     public Integer getCommentId() {
         return commentId;

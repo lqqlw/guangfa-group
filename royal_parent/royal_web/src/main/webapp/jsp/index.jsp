@@ -13,7 +13,6 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
 </head>
 <body>
-
 <!-- 头部 -->
 <jsp:include page="common/header.jsp"/>
 
@@ -216,7 +215,7 @@
             </div>
             <div class="win_ft">
                 <div class="win_ft_in">
-                    <input type="submit" class="btn" value="发表"/>
+                    <input type="submit" class="btn" value="发表" />
                 </div>
             </div>
         </div>

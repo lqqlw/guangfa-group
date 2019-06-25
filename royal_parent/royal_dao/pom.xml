@@ -11,6 +11,12 @@
 
     <artifactId>royal_dao</artifactId>
     <version>1.0-SNAPSHOT</version>
-
+    <dependencies>
+        <dependency>
+            <groupId>com.itheima</groupId>
+            <artifactId>royal_domain</artifactId>
+            <version>1.0-SNAPSHOT</version>
+        </dependency>
+    </dependencies>
 
 </project>
