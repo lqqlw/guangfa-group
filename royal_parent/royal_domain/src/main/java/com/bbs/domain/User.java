@@ -133,9 +133,9 @@ public class User {
         //发言状态，0代表未屏蔽发言（默认），1代表已屏蔽发言
         if (talkStatus != null) {
             if (talkStatus == 0) {
-                talkStatusStr = "未屏蔽发言";
+                talkStatusStr = "否";
             } else if (talkStatus == 1) {
-                talkStatusStr = "已屏蔽发言";
+                talkStatusStr = "是";
             }
         }
         return talkStatusStr;

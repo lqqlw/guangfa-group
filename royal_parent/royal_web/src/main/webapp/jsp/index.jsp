@@ -13,6 +13,7 @@
     <script type="text/javascript" src="${pageContext.request.contextPath}/js/hm-bbs.js"></script>
 </head>
 <body>
+
 <!-- 头部 -->
 <jsp:include page="common/header.jsp"/>
 
@@ -29,7 +30,7 @@
         <!--头部，帖子统计，搜索-->
         <div class="hm-bbs-info">
             <div class="hm-bbs-icon l" style="width:130px;">
-                <span><img src="images/bbs-icon.png" height="80"/></span>
+                <span><img src="${pageContext.request.contextPath}/images/bbs-icon.png" height="80"/></span>
             </div>
             <div class="hm-bbs-info-in l" style="margin-left:30px;">
                 <div class="t clearfix"><h2 class="l">王者荣耀</h2></div>
@@ -74,86 +75,23 @@
             <div class="list-view l">
                 <ul>
 
+                    <c:forEach items="${articleList}" var="article">
 
-                    <li class="clearfix ding">
-                        <div class="hm-index-title">
-                            <i class="set-to-top">顶</i> <a href="getArticle.do">求官方出艾琳英雄活动</a>
-                        </div>
-                        <div class="hm-index-con">本人玩得迟，所以看到别人用艾琳的时候，特别羡慕，现贵族6了，很想要一个艾琳，我身边很多朋友也想要，求</div>
-                        <div class="hm-index-info l">
-                            <span class="article-username">晨曦初露</span>
-                            <span class="post-time">2017-05-24 08:00:05</span>
-                        </div>
-                        <div class="hm-index-fun r">
-                            <span class="icon-like"><i></i>1</span>
-                            <span class="icon-talk"><i></i>0</span>
-                        </div>
-                    </li>
-
-
-
-                    <li class="clearfix ding">
-                        <div class="hm-index-title">
-                            <i class="set-to-top">顶</i> <a href="getArticle.do">求官方出艾琳英雄活动</a>
-                        </div>
-                        <div class="hm-index-con">本人玩得迟，所以看到别人用艾琳的时候，特别羡慕，现贵族6了，很想要一个艾琳，我身边很多朋友也想要，求</div>
-                        <div class="hm-index-info l">
-                            <span class="article-username">晨曦初露</span><span class="post-time">2017-05-24 08:00:05</span>
-                        </div>
-                        <div class="hm-index-fun r">
-                            <span class="icon-like"><i></i>1</span>
-                            <span class="icon-talk"><i></i>0</span>
-                        </div>
-                    </li>
-                    <li class="clearfix ding">
-                        <div class="hm-index-title">
-                            <i class="set-to-top">顶</i> <a href="getArticle.do">求官方出艾琳英雄活动</a>
-                        </div>
-                        <div class="hm-index-con">本人玩得迟，所以看到别人用艾琳的时候，特别羡慕，现贵族6了，很想要一个艾琳，我身边很多朋友也想要，求</div>
-                        <div class="hm-index-info l">
-                            <span class="article-username">晨曦初露</span><span class="post-time">2017-05-24 08:00:05</span>
-                        </div>
-                        <div class="hm-index-fun r">
-                            <span class="icon-like"><i></i>1</span>
-                            <span class="icon-talk"><i></i>0</span>
-                        </div>
-                    </li>
-
-
-
-
-                    <li class="clearfix">
-                        <div class="hm-index-title">
-                            <i class="set-to-top">顶</i> <a href="getArticle.do">排位赛BUG，排不上！</a>
-                        </div>
-                        <div class="hm-index-con">现在黄金2，无论怎么匹配，都匹配不到？有次匹配了10分钟，这是为什么？</div>
-                        <div class="hm-index-info l">
-                            <span class="article-username">不哭不闹不炫耀</span><span class="post-time">2017-05-24 09:10:00</span>
-                        </div>
-                        <div class="hm-index-fun r">
-                            <span class="icon-like"><i></i>3</span>
-                            <span class="icon-talk"><i></i>10</span>
-                        </div>
-                    </li>
-
-
-
-
-                    <li class="clearfix">
-                        <div class="hm-index-title">
-                            <i class="set-to-top">顶</i> <a href="getArticle.do">排位赛BUG，排不上！</a>
-                        </div>
-                        <div class="hm-index-con">现在黄金2，无论怎么匹配，都匹配不到？有次匹配了10分钟，这是为什么？</div>
-                        <div class="hm-index-info l">
-                            <span class="article-username">不哭不闹不炫耀</span><span class="post-time">2017-05-24 09:10:00</span>
-                        </div>
-                        <div class="hm-index-fun r">
-                            <span class="icon-like"><i></i>3</span>
-                            <span class="icon-talk"><i></i>10</span>
-                        </div>
-                    </li>
-
-
+                        <li class="clearfix">
+                            <div class="hm-index-title">
+                                <i class="set-to-top">顶</i> <a href="getArticle.do?articleId=${article.articleId}">${article.title}</a>
+                            </div>
+                            <div class="hm-index-con">${article.content}</div>
+                            <div class="hm-index-info l">
+                                <span class="article-username">${article.senderName}</span>
+                                <span class="post-time">${article.sendTimeStr}</span>
+                            </div>
+                            <div class="hm-index-fun r">
+                                <span class="icon-like"><i></i>${article.upvoteCount}</span>
+                                <span class="icon-talk"><i></i>${article.replyCount}</span>
+                            </div>
+                        </li>
+                    </c:forEach>
                 </ul>
             </div>
 
@@ -168,11 +106,11 @@
                     </h3>
                     <ul class="b clearfix">
                         <li>
-                            <div><img src="images/default.png" height="55"/> </div>
+                            <div><img src="${pageContext.request.contextPath}/images/default.png" height="55"/> </div>
                             <p>Mr.King</p>
                         </li>
                         <li>
-                            <div><img src="images/default.png" height="55"/></div>
+                            <div><img src="${pageContext.request.contextPath}/images/default.png" height="55"/></div>
                             <p>疯子</p>
                         </li>
                     </ul>
@@ -215,13 +153,12 @@
             </div>
             <div class="win_ft">
                 <div class="win_ft_in">
-                    <input type="submit" class="btn" value="发表" />
+                    <input type="submit" class="btn" value="发表"/>
                 </div>
             </div>
         </div>
     </div>
 </form>
-
 
 </body>
 </html>

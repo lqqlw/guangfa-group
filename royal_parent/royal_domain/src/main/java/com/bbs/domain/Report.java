@@ -11,7 +11,25 @@ public class Report {
     private Date reportTime;//举报时间
     private String reportUserName;//举报人
     private Integer reportStatus;//处理状态
+    private String reportStatusStr;
     private Integer articleId;//文章ID
+
+    public String getReportStatusStr() {
+        if (reportStatus!=null){
+            if (reportStatus ==1){
+                reportStatusStr="已驳回";
+            }
+            if (reportStatus==0){
+                reportStatusStr="已屏蔽";
+            }
+        }
+
+        return reportStatusStr;
+    }
+
+    public void setReportStatusStr(String reportStatusStr) {
+        this.reportStatusStr = reportStatusStr;
+    }
 
     public Integer getReportId() {
         return reportId;

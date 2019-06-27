@@ -6,7 +6,24 @@ package com.bbs.domain;
 public class Word {
     private Integer wordId;
     private String word;//敏感词
-    private Integer status;//是否启用
+    private Integer status;//是否启用 0,启用 1,未启用
+    private String statusStr;
+
+    public String getStatusStr() {
+        if (status!=null){
+            if (status==0){
+                statusStr="启用";
+            }
+            if (status==1){
+                statusStr="未启用";
+            }
+        }
+        return statusStr;
+    }
+
+    public void setStatusStr(String statusStr) {
+        this.statusStr = statusStr;
+    }
 
     public Integer getWordId() {
         return wordId;

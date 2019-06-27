@@ -33,7 +33,7 @@
                 <bean class="com.github.pagehelper.PageInterceptor">
                     <property name="properties">
                         <props>
-                            <prop key="helperDialect">oracle</prop>
+                            <prop key="helperDialect">mysql</prop>
                             <prop key="reasonable">true</prop>
                         </props>
                     </property>
@@ -44,7 +44,7 @@
 
     <!-- 扫描dao接口 -->
     <bean id="mapperScanner" class="org.mybatis.spring.mapper.MapperScannerConfigurer">
-        <property name="basePackage" value="com.itheima.ssm.dao"/>
+        <property name="basePackage" value="com.bbs.dao"/>
     </bean>
     <!-- 配置Spring的声明式事务管理 -->
     <!-- 配置事务管理器 -->

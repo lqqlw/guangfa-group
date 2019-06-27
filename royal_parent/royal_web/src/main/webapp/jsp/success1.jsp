@@ -43,7 +43,7 @@
 <div class="hm-body hm-body-bgc">
         <div class="hm-inner"> 
             <div class="reg-box" style="text-align:center;height:200px;padding-top:100px;">
-                <h2>恭喜您，注册成功！</h2>
+                <h2>恭喜您，登录成功！</h2>
             </div>
         </div>
     </div>

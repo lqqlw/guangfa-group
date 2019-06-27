@@ -40,31 +40,31 @@
                 <!-- 路径导航 -->
                 <div >
                     <ol class="breadcrumb">
-                        <li><a href="#">用户帖管理</a></li>
-                        <li class="active">帖子信息</li>
+                        <li><a href="#">用户管理</a></li>
+                        <li class="active">用户信息</li>
                     </ol>
                 </div>
                 <hr>
                 <!-- Table -->
                 <div>
                     <div style="float: left">
-                        <form method="post" id="articleSearchForm" action="${pageContext.request.contextPath}/article/findByName">
+                        <form method="get" id="articleSearchForm">
                             <table>
                                 <tr>
                                     <th>
-                                        <label for="article_title" class="control-label">标题:</label>
+                                        <label for="title" class="control-label">用户名:</label>
                                     </th>
                                     <th>
-                                        <input type="text" id="article_title" class="form-control"
+                                        <input type="text" id="title" class="form-control"
                                                name="title" value="">
                                         <input type="hidden" id="pageNum" name="pn" value="">
                                     </th>
                                     <th>
-                                        <label for="article_senderName" class="control-label">创帖人:</label>
+                                        <label for="article_sendername" class="control-label">用户组:</label>
                                     </th>
                                     <th>
-                                        <input type="text" id="article_senderName" class="form-control"
-                                               name="senderName" value="">
+                                        <input type="text" id="article_sendername" class="form-control"
+                                               name="sendername" value="">
                                     </th>
                                     <th colspan="2">
                                         <input type="submit" value="查询" class="form-control btn-primary">
@@ -80,51 +80,41 @@
                 <table class="table table-bordered table-hover">
                     <thead>
                     <tr>
-                        <th>标题</th>
-                        <th>内容</th>
-                        <th>创帖人</th>
-                        <th>是否置顶</th>
-                        <th>回复数</th>
-                        <th>点赞数</th>
-                        <th>浏览数</th>
-                        <th>所在交流区</th>
+                        <th>用户名</th>
+                        <th>用户组</th>
+                        <th>邮箱</th>
+                        <th>是否禁言</th>
+                        <th>最近登陆时间</th>
                         <th>操作</th>
                     </tr>
                     </thead>
                     <tbody>
-                            <c:forEach items="${pageInfo.list}" var="article">
+                            <c:forEach items="${pageInfo.list}" var="user">
                             <tr>
-                                <td width="15%">${article.title}</td>
-                                <td width="30%" class="line-limit-length">
-                                    ${article.content}
+                                <td>${user.userName}</td>
+                                <td>
+                                    ${user.role}
                                 </td>
-                                <td>${article.senderName}</td>
-                                <td width="5%" class="line-limit-length">
-                                        ${article.isTopStr}
-                                </td>
-                                <td width="5%">
-                                        ${article.replyCount}
-
-                                </td>
-                                <td width="5%">
-                                        ${article.upvoteCount}
-
-                                </td>
-                                <td width="5%">
-                                        ${article.browseCount}
-
+                                <td>${user.email}</td>
+                                <td>
+                                        ${user.talkStatusStr}
                                 </td>
                                 <td width="15%">
-                                    ${article.zonIdStr}
-                                </td>
+                                        ${user.lastLoginTime}
                                 <td width="15%">
-                                    <a href="${pageContext.request.contextPath}/article/deleteArticle?id=${article.articleId}&title=${article.title}&senderName=${article.senderName}" role="button" class="btn btn-primary">屏蔽</a>
-                                    <c:if test="${article.isTop==0}">
-                                        <a href="${pageContext.request.contextPath}/article/changeStatus?id=${article.articleId}&isTop=${article.isTop+1}&title=${article.title}&senderName=${article.senderName}" role="button" class="btn btn-danger" >置顶</a>
+                                    <c:if test="${user.role==2}">
+                                        <a href="${pageContext.request.contextPath}/user/changeStatus?id=${user.userId}&role=${user.role-1}" role="button" class="btn btn-danger" >降级</a>
                                     </c:if>
-                                    <c:if test="${article.isTop==1}">
-                                            <a href="${pageContext.request.contextPath}/article/changeStatus?id=${article.articleId}&isTop=${article.isTop-1}&title=${articleSearch.title}&senderName=${article.senderName}" role="button" class="btn btn-info" >取消</a>
+                                    <c:if test="${user.role==1}">
+                                            <a href="${pageContext.request.contextPath}/user/changeStatus?id=${user.userId}&role=${user.role+1}" role="button" class="btn btn-info" >升级</a>
                                     </c:if>
+                                <c:if test="${user.talkStatus==0}">
+                                    <a href="${pageContext.request.contextPath}/user/speakingCompetence?id=${user.userId}&talkStatus=${user.talkStatus+1}" role="button" class="btn btn-danger" >禁言</a>
+                                </c:if>
+                                <c:if test="${user.talkStatus==1}">
+                                    <a href="${pageContext.request.contextPath}/user/speakingCompetence?id=${user.userId}&talkStatus=${user.talkStatus-1}" role="button" class="btn btn-info" >恢复</a>
+                                </c:if>
+
                                 </td>
                             </tr>
                             </c:forEach>
@@ -143,15 +133,15 @@
                 <div class="box-tools pull-right">
                     <ul class="pagination">
                         <li>
-                            <a href="${pageContext.request.contextPath}/article/findByPage?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
+                            <a href="${pageContext.request.contextPath}/user/findByPage?page=1&size=${pageInfo.pageSize}" aria-label="Previous">首页</a>
                         </li>
-                        <li><a href="${pageContext.request.contextPath}/article/findByPage?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/findByPage?page=${pageInfo.pageNum-1}&size=${pageInfo.pageSize}">上一页</a></li>
                         <c:forEach begin="1" end="${pageInfo.pages}" var="pageNum">
-                            <li><a href="${pageContext.request.contextPath}/article/findByPage?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
+                            <li><a href="${pageContext.request.contextPath}/user/findByPage?page=${pageNum}&size=${pageInfo.pageSize}">${pageNum}</a></li>
                         </c:forEach>
-                        <li><a href="${pageContext.request.contextPath}/article/findByPage?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
+                        <li><a href="${pageContext.request.contextPath}/user/findByPage?page=${pageInfo.pageNum+1}&size=${pageInfo.pageSize}">下一页</a></li>
                         <li>
-                            <a href="${pageContext.request.contextPath}/article/findByPage?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
+                            <a href="${pageContext.request.contextPath}/user/findByPage?page=${pageInfo.pages}&size=${pageInfo.pageSize}" aria-label="Next">尾页</a>
                         </li>
                     </ul>
                 </div>

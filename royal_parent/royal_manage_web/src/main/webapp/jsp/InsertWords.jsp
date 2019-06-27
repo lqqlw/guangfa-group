@@ -16,21 +16,18 @@
         <div class="col-md-4 col-md-offset-4" style="margin: 380px 380px">
             <div class="login-panel panel panel-default"style="margin-top:-130px" >
                 <div class="panel-heading">
-                    <h3 class="panel-title" style="text-align: center;">王者荣耀论坛管理后台</h3>
+                    <h3 class="panel-title" style="text-align: center;">新增敏感词汇</h3>
                 </div>
                 <div class="panel-body">
                     <div id="errorMsg" class="alert alert-danger" ></div>
-                    <form role="form" method="post" id="login_form" action="${pageContext.request.contextPath}/login">
+                    <form role="form" method="post" id="login_form" action="${pageContext.request.contextPath}/word/save">
                         <fieldset>
                             <div class="form-group">
-                                <input class="form-control" placeholder="用户名" name="username" autofocus>
-                            </div>
-                            <div class="form-group">
-                                <input class="form-control" placeholder="密码" name="userpass" type="password">
+                                <input class="form-control" placeholder="请输入敏感词" name="word" autofocus>
                             </div>
                             <!-- Change this to a button or input when using this as a form -->
                             <!--<a href="javascript:void(0)" class="btn btn-lg btn-success btn-block" id='login_btn'>登录</a>-->
-                                <input type="submit" id="btn_sub" class="btn btn-lg btn-success btn-block" value="登录">
+                            <input type="submit" id="btn_sub" class="btn btn-lg btn-success btn-block" value="保存">
                         </fieldset>
                     </form>
 
@@ -41,3 +38,4 @@
 </div>
 </body>
 </html>
+
